@@ -1,0 +1,68 @@
+version: "3.4"
+x-deploy:
+- &tester
+  replicas: 1
+  resources:
+    limits:
+      cpus: "0.1"
+      memory: 50M
+- &critical
+  replicas: 1
+  resources:
+    limits:
+      cpus: "2"
+      memory: 200M
+
+services:
+  router:
+    build: src/router
+    privileged: true
+    deploy: *critical
+    networks:
+      demo_net:
+        ipv4_address: 172.16.239.12
+    sysctls:
+      - net.ipv4.ip_forward=1
+      - net.ipv6.conf.all.disable_ipv6=1
+    environment:
+      - DRIVER=libbpf
+      - ROUTER=172.16.239.12
+      - CLIENT=172.16.239.13
+      - SERVER=172.16.239.14
+
+  client:
+    build: src/pod
+    privileged: true
+    deploy: *tester
+    entrypoint: /opt/example/client.sh
+    networks:
+      demo_net:
+        ipv4_address: 172.16.239.13
+    sysctls:
+      - net.ipv6.conf.all.disable_ipv6=1
+    environment:
+      - ROUTER=172.16.239.12
+      - CLIENT=172.16.239.13
+      - SERVER=172.16.239.14
+
+  service:
+    build: src/pod
+    privileged: true
+    deploy: *tester
+    entrypoint: /opt/example/service.sh
+    networks:
+      demo_net:
+        ipv4_address: 172.16.239.14
+    sysctls:
+      - net.ipv6.conf.all.disable_ipv6=1
+    environment:
+      - ROUTER=172.16.239.12
+      - CLIENT=172.16.239.13
+      - SERVER=172.16.239.14
+
+networks:
+  demo_net:
+    ipam:
+      driver: default
+      config:
+        - subnet: "172.16.239.0/24"

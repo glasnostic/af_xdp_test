@@ -1,0 +1,35 @@
+service_1  | Actual changes:
+service_1  | tx-checksumming: off
+service_1  |    tx-checksum-ip-generic: off
+service_1  |    tx-checksum-sctp: off
+service_1  | tcp-segmentation-offload: off
+service_1  |    tx-tcp-segmentation: off [requested on]
+service_1  |    tx-tcp-ecn-segmentation: off [requested on]
+service_1  |    tx-tcp-mangleid-segmentation: off [requested on]
+service_1  |    tx-tcp6-segmentation: off [requested on]
+service_1  | 1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN mode DEFAULT group default qlen 1000
+service_1  |     link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+service_1  | 2: sit0@NONE: <NOARP> mtu 1480 qdisc noop state DOWN mode DEFAULT group default qlen 1000
+service_1  |     link/sit 0.0.0.0 brd 0.0.0.0
+service_1  | 87: eth0@if88: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP mode DEFAULT group default
+service_1  |     link/ether 02:42:ac:10:ef:0e brd ff:ff:ff:ff:ff:ff link-netnsid 0
+service_1  | Serving HTTP on 0.0.0.0 port 80 ...
+service_1  | 172.16.239.13 - - [11/Sep/2019 01:56:49] "GET / HTTP/1.1" 200 -
+service_1  | Actual changes:
+service_1  | tx-checksumming: off
+service_1  |    tx-checksum-ip-generic: off
+service_1  |    tx-checksum-sctp: off
+service_1  | tcp-segmentation-offload: off
+service_1  |    tx-tcp-segmentation: off [requested on]
+service_1  |    tx-tcp-ecn-segmentation: off [requested on]
+service_1  |    tx-tcp-mangleid-segmentation: off [requested on]
+service_1  |    tx-tcp6-segmentation: off [requested on]
+service_1  | 1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN mode DEFAULT group default qlen 1000
+service_1  |     link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+service_1  | 2: sit0@NONE: <NOARP> mtu 1480 qdisc noop state DOWN mode DEFAULT group default qlen 1000
+service_1  |     link/sit 0.0.0.0 brd 0.0.0.0
+service_1  | 91: eth0@if92: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP mode DEFAULT group default
+service_1  |     link/ether 02:42:ac:10:ef:0e brd ff:ff:ff:ff:ff:ff link-netnsid 0
+service_1  | Serving HTTP on 0.0.0.0 port 80 ...
+service_1  | 172.16.239.13 - - [11/Sep/2019 01:57:37] "GET / HTTP/1.1" 200 -
+service_1  | 172.16.239.13 - - [11/Sep/2019 02:45:54] "GET / HTTP/1.1" 200 -
