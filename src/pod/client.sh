@@ -3,7 +3,7 @@
 function curl_test() {
   local target=$1
   echo "curl test to $target"
-  curl --connect-timeout 10 -m 60 -v $target
+  curl  --noproxy $target --connect-timeout 10 -m 60 -v $target
 }
 
 function iperf_test() {
@@ -20,6 +20,8 @@ function ping_test() {
 
 ethtool -K eth0 tx off
 ip link
+
+sleep 30s
 
 # curl test
 curl_test $SERVER
