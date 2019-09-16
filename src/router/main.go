@@ -6,7 +6,8 @@ import (
 	"net"
 	"os"
 	"os/signal"
-	"syscall"
+
+	"golang.org/x/sys/unix"
 
 	"github.com/glasnostic/example/router/driver"
 	"github.com/glasnostic/example/router/packet/handler"
@@ -39,7 +40,7 @@ func main() {
 
 	// Terminate _Example_ when receiving SIGINT | SIGTERM
 	sig := make(chan os.Signal)
-	signal.Notify(sig, syscall.SIGINT, syscall.SIGTERM)
+	signal.Notify(sig, unix.SIGINT, unix.SIGTERM)
 	<-sig
 	log.Println("====== Example end ======")
 }
@@ -64,6 +65,7 @@ func setup() {
 
 	nicName = "eth0"
 	mustSuccess(loadMAC(), "Failed to load local MAC")
+	mustSuccess(setRlimit(), "Failed to setrlimit")
 
 }
 
@@ -75,6 +77,14 @@ func loadMAC() error {
 	}
 	localMac = nic.HardwareAddr
 	return nil
+}
+
+func setRlimit() error {
+	rLimit := &unix.Rlimit{
+		Max: unix.RLIM_INFINITY,
+		Cur: unix.RLIM_INFINITY,
+	}
+	return unix.Setrlimit(unix.RLIMIT_MEMLOCK, rLimit)
 }
 
 func mustSuccess(err error, msg string) {

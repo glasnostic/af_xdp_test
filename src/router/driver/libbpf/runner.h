@@ -20,8 +20,8 @@ int poll_libbpf();
 
 // read_packet_from_fq_torx_with_libbpf
 int read_packet_from_fq_torx_with_libbpf(uintptr_t bptr);
-// new_packet_wit_libbpf
-int new_packet_wit_libbpf(unsigned char * buf, size_t len);
+// new_packet_with_libbpf
+int new_packet_with_libbpf(unsigned char * buf, size_t len);
 
 int pass_rx_packet_to_tx(uint32_t len);
 

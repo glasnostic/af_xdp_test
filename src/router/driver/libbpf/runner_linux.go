@@ -90,7 +90,7 @@ func (l *libbpfRunnerLinux) Pass(pkt Packet) {
 
 func (l *libbpfRunnerLinux) New(pkt Packet) {
 	slice := (*reflect.SliceHeader)(unsafe.Pointer(&pkt))
-	C.new_packet_wit_libbpf((*C.uchar)(unsafe.Pointer(slice.Data)), C.size_t(len(pkt)))
+	C.new_packet_with_libbpf((*C.uchar)(unsafe.Pointer(slice.Data)), C.size_t(len(pkt)))
 	l.injected++
 	l.complete()
 }

@@ -228,7 +228,7 @@ int pass_rx_packet_to_tx(uint32_t len)
 	return ret;
 }
 
-int new_packet_wit_libbpf(unsigned char * buf, size_t len)
+int new_packet_with_libbpf(unsigned char * buf, size_t len)
 {
 	const struct xdp_desc *rx_desc = xsk_ring_cons__rx_desc(&xsk_ptr->rx, rx_idx);
 	void *pkt = xsk_umem__get_data(xsk_ptr->umem->buf, rx_desc->addr);
