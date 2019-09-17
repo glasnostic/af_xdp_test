@@ -19,7 +19,9 @@ var (
 	local      net.IP
 	localMac   net.HardwareAddr
 	client     net.IP
+	clientMac  net.HardwareAddr
 	server     net.IP
+	serverMac  net.HardwareAddr
 )
 
 const (
@@ -33,7 +35,7 @@ func main() {
 
 	drv, err := driver.New(driverName, nicName)
 	mustSuccess(err, "Failed to create driver with error")
-	hdl := handler.NewRewriter(localMac, local, client, server)
+	hdl := handler.NewRewriter(localMac, clientMac, serverMac, local, client, server)
 
 	log.Println("======= Start running driver =======")
 	go drv.Run(hdl)
@@ -64,7 +66,7 @@ func setup() {
 	}
 
 	nicName = "eth0"
-	mustSuccess(loadMAC(), "Failed to load local MAC")
+	mustSuccess(loadMAC(), "Failed to load MAC")
 	mustSuccess(setRlimit(), "Failed to setrlimit")
 
 }
@@ -76,6 +78,14 @@ func loadMAC() error {
 		return fmt.Errorf("given NIC %s must existing and accessible", nicName)
 	}
 	localMac = nic.HardwareAddr
+	clientMac, err = net.ParseMAC(os.Getenv("CLIENT_MAC"))
+	if err != nil {
+		return err
+	}
+	serverMac, err = net.ParseMAC(os.Getenv("SERVER_MAC"))
+	if err != nil {
+		return err
+	}
 	return nil
 }
 

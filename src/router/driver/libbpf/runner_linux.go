@@ -24,14 +24,12 @@ import (
 	"strconv"
 	"sync"
 	"sync/atomic"
-	"time"
 	"unsafe"
 )
 
 const (
 	DefaultCombinedQueueID = 0
-	BatchFrames            = 1
-	// BatchFrames            = 1 << 2 // the maximum number of frame we tell AF_XDP we want fetch per poll
+	BatchFrames            = 1 << 4 // the maximum number of frame we tell AF_XDP we want fetch per poll
 	// BatchFrames            = 1 << 10 // the maximum number of frame we tell AF_XDP we want fetch per poll
 )
 
@@ -137,12 +135,10 @@ func (l *libbpfRunnerLinux) worker() {
 			// most likely BatchFrames(16) packets in FQ waiting for proceed
 			for i := 0; i < total; i++ {
 				l.fetchOnePacketFromXSK()
-				log.Printf("[guesslin] wait packet processing %s\n", time.Now())
 				if _, ok := <-l.next; !ok {
 					// next channel has been closed by Close, stop fetching packets from AF_XDP
 					return
 				}
-				log.Printf("[guesslin] packet processed %s\n", time.Now())
 				C.rx_fwd()
 			}
 			l.flush(total)

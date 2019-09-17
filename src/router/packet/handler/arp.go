@@ -64,7 +64,7 @@ func (r *rewriter) buildARP(dstIP uint32, arpType uint16, remoteMAC net.Hardware
 	var arpFrame [14 + 28]byte
 	// Ethernet header
 	copy(arpFrame[0:6], remoteMAC)                      // Destination
-	copy(arpFrame[6:12], r.mac)                         // Source
+	copy(arpFrame[6:12], r.local.mac)                   // Source
 	binary.BigEndian.PutUint16(arpFrame[12:14], 0x0806) // Type: ARP
 
 	// ARP packet Payload
@@ -74,7 +74,7 @@ func (r *rewriter) buildARP(dstIP uint32, arpType uint16, remoteMAC net.Hardware
 	arpPacket[4] = uint8(6)                                  // HWAddr length: Ethernet addresses size is 6
 	arpPacket[5] = uint8(4)                                  // IPAddr length: IPv4 addresses size is 4
 	binary.BigEndian.PutUint16(arpPacket[6:8], arpType)      // Request is 1, Reply is 2
-	copy(arpPacket[8:14], r.mac)                             // sender mac address
+	copy(arpPacket[8:14], r.local.mac)                       // sender mac address
 	copy(arpPacket[14:18], IPv6ToIPv4Len(r.local.ip))        // sender ip address
 	copy(arpPacket[18:24], remoteMAC)                        // target mac address
 	copy(arpPacket[24:28], IPv6ToIPv4Len(Uint32ToIP(dstIP))) // target ip address

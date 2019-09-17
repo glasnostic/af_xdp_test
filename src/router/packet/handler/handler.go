@@ -11,8 +11,6 @@ import (
 
 // rewriter
 type rewriter struct {
-	mac net.HardwareAddr
-
 	local  *pod
 	client *pod
 	server *pod
@@ -21,18 +19,22 @@ type rewriter struct {
 }
 
 // NewRewriter create New Rewriter Handler
-func NewRewriter(localMac net.HardwareAddr, localIP net.IP, client, server net.IP) packet.Handler {
-	return &rewriter{
-		mac:    localMac,
-		local:  newPod(localIP),
-		client: newPod(client),
-		server: newPod(server),
+func NewRewriter(localMac, clientMac, serverMac net.HardwareAddr, localIP net.IP, client, server net.IP) packet.Handler {
+	res := &rewriter{
+		local:  newPod(localIP, localMac),
+		client: newPod(client, clientMac),
+		server: newPod(server, serverMac),
 		table:  make(map[uint32]net.HardwareAddr),
 	}
+	res.table[res.client.value] = res.client.mac
+	res.table[res.server.value] = res.server.mac
+	return res
 }
 
 func (r *rewriter) Handle(meta *packet.Metadata) (packet.Action, error) {
-	switch typ := typeOfPacket(meta); typ {
+	typ := typeOfPacket(meta)
+	log.Printf("Packet type %s length %d\n", typ, len(meta.Packet))
+	switch typ {
 	case layers.EthernetTypeARP:
 		return r.handleARP(meta)
 	case layers.EthernetTypeIPv4:
@@ -40,7 +42,6 @@ func (r *rewriter) Handle(meta *packet.Metadata) (packet.Action, error) {
 	case layers.EthernetTypeIPv6:
 		return r.handleIPv6(meta)
 	default:
-		log.Printf("unknown type %s\n", typ)
 	}
 	return packet.Drop, ErrNotAcceptableType
 }
@@ -62,7 +63,7 @@ func (r *rewriter) handleIP(meta *packet.Metadata) (packet.Action, error) {
 	// 2-2. if yes, set realDst with dstMAC to packet
 	setDst(meta, realDst, dstMAC)
 	// 3. change source IP to local (real -> local)
-	setSrc(meta, r.local.value, r.mac)
+	setSrc(meta, r.local.value, r.local.mac)
 	// 4. calculate the checksum
 	return checksum(meta)
 }

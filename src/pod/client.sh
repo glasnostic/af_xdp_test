@@ -20,6 +20,8 @@ function ping_test() {
 
 ethtool -K eth0 tx off
 ip link
+ip neigh replace $ROUTER lladdr $ROUTER_MAC dev eth0
+ip neigh replace $CLIENT lladdr $CLIENT_MAC dev eth0
 
 sleep 30s
 
