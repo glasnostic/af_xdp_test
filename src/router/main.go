@@ -107,5 +107,4 @@ func mustHaveIP(ip net.IP, msg string) {
 	if ip == nil {
 		log.Fatalf("%s must be given but missing!\n", msg)
 	}
-
 }

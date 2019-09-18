@@ -7,130 +7,81 @@ router_1   |    tx-tcp-segmentation: off [requested on]
 router_1   |    tx-tcp-ecn-segmentation: off [requested on]
 router_1   |    tx-tcp-mangleid-segmentation: off [requested on]
 router_1   |    tx-tcp6-segmentation: off [requested on]
-router_1   | 2019/09/11 01:56:43 ===== Example setup =====
-router_1   | 2019/09/11 01:56:43 ======= Start running driver =======
-router_1   | 2019/09/11 01:56:43 Libbpf runner worker starting
-router_1   | 2019/09/11 01:56:43 Libbpf Run called
-router_1   | Actual changes:
-router_1   | tx-checksumming: off
-router_1   |    tx-checksum-ip-generic: off
-router_1   |    tx-checksum-sctp: off
-router_1   | tcp-segmentation-offload: off
-router_1   |    tx-tcp-segmentation: off [requested on]
-router_1   |    tx-tcp-ecn-segmentation: off [requested on]
-router_1   |    tx-tcp-mangleid-segmentation: off [requested on]
-router_1   |    tx-tcp6-segmentation: off [requested on]
-router_1   | 2019/09/11 01:57:33 ===== Example setup =====
-router_1   | 2019/09/11 01:57:33 ===== Example start =====
-router_1   | 2019/09/11 01:57:33 Libbpf runner worker starting
-router_1   | 2019/09/11 01:57:33 ======= Start running driver =======
-router_1   | 2019/09/11 01:57:33 Libbpf Run called
-router_1   | 2019/09/11 01:59:36 [guesslin] libbpf fetch 1 packets
-router_1   | 2019/09/11 01:59:36 [guesslin] wait packet processing 2019-09-11 01:59:36.642021308 +0000 UTC m=+123.625784603
-router_1   | 2019/09/11 01:59:36 Libbpf based AF_XDP drops packet due to error: ipv6 not support
-router_1   | 2019/09/11 01:59:36 [guesslin] packet processed 2019-09-11 01:59:36.642214214 +0000 UTC m=+123.625977458
-router_1   | 2019/09/11 01:59:36 [guesslin] libbpf fetch 1 packets
-router_1   | 2019/09/11 01:59:36 [guesslin] wait packet processing 2019-09-11 01:59:36.642378237 +0000 UTC m=+123.626141384
-router_1   | 2019/09/11 01:59:36 Libbpf based AF_XDP drops packet due to error: ipv6 not support
-router_1   | 2019/09/11 01:59:36 [guesslin] packet processed 2019-09-11 01:59:36.642545355 +0000 UTC m=+123.626308555
-router_1   | 2019/09/11 01:59:36 [guesslin] libbpf fetch 1 packets
-router_1   | 2019/09/11 01:59:36 [guesslin] wait packet processing 2019-09-11 01:59:36.642762087 +0000 UTC m=+123.626525315
-router_1   | 2019/09/11 01:59:36 Libbpf based AF_XDP drops packet due to error: ipv6 not support
-router_1   | 2019/09/11 01:59:36 [guesslin] packet processed 2019-09-11 01:59:36.642916479 +0000 UTC m=+123.626679760
-router_1   | 2019/09/11 01:59:36 [guesslin] libbpf fetch 1 packets
-router_1   | 2019/09/11 01:59:36 [guesslin] wait packet processing 2019-09-11 01:59:36.643070176 +0000 UTC m=+123.626833422
-router_1   | 2019/09/11 01:59:36 Libbpf based AF_XDP drops packet due to error: ipv6 not support
-router_1   | 2019/09/11 01:59:36 [guesslin] packet processed 2019-09-11 01:59:36.643329994 +0000 UTC m=+123.627093138
-router_1   | 2019/09/11 01:59:36 [guesslin] libbpf fetch 1 packets
-router_1   | 2019/09/11 01:59:36 [guesslin] wait packet processing 2019-09-11 01:59:36.643440664 +0000 UTC m=+123.627220239
-router_1   | 2019/09/11 01:59:36 Libbpf based AF_XDP drops packet due to error: ipv6 not support
-router_1   | 2019/09/11 01:59:36 [guesslin] packet processed 2019-09-11 01:59:36.643530195 +0000 UTC m=+123.627293424
-router_1   | 2019/09/11 01:59:36 [guesslin] libbpf fetch 1 packets
-router_1   | 2019/09/11 01:59:36 [guesslin] wait packet processing 2019-09-11 01:59:36.643703588 +0000 UTC m=+123.627466808
-router_1   | 2019/09/11 01:59:36 [guesslin] packet processed 2019-09-11 01:59:36.643743869 +0000 UTC m=+123.627507460
-router_1   | 2019/09/11 01:59:36 [guesslin] libbpf fetch 1 packets
-router_1   | 2019/09/11 01:59:36 [guesslin] wait packet processing 2019-09-11 01:59:36.64388733 +0000 UTC m=+123.627650452
-router_1   | 2019/09/11 01:59:36 [guesslin] packet processed 2019-09-11 01:59:36.643897965 +0000 UTC m=+123.627661100
-router_1   | 2019/09/11 01:59:36 [guesslin] libbpf fetch 1 packets
-router_1   | 2019/09/11 01:59:36 [guesslin] wait packet processing 2019-09-11 01:59:36.643950471 +0000 UTC m=+123.627713668
-router_1   | 2019/09/11 01:59:36 [guesslin] packet processed 2019-09-11 01:59:36.644113732 +0000 UTC m=+123.627876964
-router_1   | 2019/09/11 01:59:36 [guesslin] libbpf fetch 1 packets
-router_1   | 2019/09/11 01:59:36 [guesslin] wait packet processing 2019-09-11 01:59:36.644137603 +0000 UTC m=+123.627900880
-router_1   | 2019/09/11 01:59:36 [guesslin] packet processed 2019-09-11 01:59:36.644145998 +0000 UTC m=+123.627909231
-router_1   | 2019/09/11 01:59:36 [guesslin] libbpf fetch 1 packets
-router_1   | 2019/09/11 01:59:36 [guesslin] wait packet processing 2019-09-11 01:59:36.644237939 +0000 UTC m=+123.628001075
-router_1   | 2019/09/11 01:59:36 [guesslin] packet processed 2019-09-11 01:59:36.644247322 +0000 UTC m=+123.628010426
-router_1   | 2019/09/11 01:59:36 [guesslin] libbpf fetch 1 packets
-router_1   | 2019/09/11 01:59:36 [guesslin] wait packet processing 2019-09-11 01:59:36.644261641 +0000 UTC m=+123.628024871
-router_1   | 2019/09/11 01:59:36 [guesslin] packet processed 2019-09-11 01:59:36.644282849 +0000 UTC m=+123.628046264
-router_1   | 2019/09/11 01:59:36 [guesslin] libbpf fetch 1 packets
-router_1   | 2019/09/11 01:59:36 [guesslin] wait packet processing 2019-09-11 01:59:36.644320948 +0000 UTC m=+123.628084064
-router_1   | 2019/09/11 01:59:36 [guesslin] packet processed 2019-09-11 01:59:36.644329028 +0000 UTC m=+123.628092152
-router_1   | 2019/09/11 01:59:36 [guesslin] libbpf fetch 1 packets
-router_1   | 2019/09/11 01:59:36 [guesslin] wait packet processing 2019-09-11 01:59:36.644343289 +0000 UTC m=+123.628106528
-router_1   | 2019/09/11 01:59:36 [guesslin] packet processed 2019-09-11 01:59:36.644351091 +0000 UTC m=+123.628114229
-router_1   | 2019/09/11 01:59:36 [guesslin] libbpf fetch 1 packets
-router_1   | 2019/09/11 01:59:36 [guesslin] wait packet processing 2019-09-11 01:59:36.644384373 +0000 UTC m=+123.628147528
-router_1   | 2019/09/11 01:59:36 Libbpf based AF_XDP drops packet due to error: ipv6 not support
-router_1   | 2019/09/11 01:59:36 [guesslin] packet processed 2019-09-11 01:59:36.644396446 +0000 UTC m=+123.628159551
-router_1   | 2019/09/11 01:59:36 [guesslin] libbpf fetch 1 packets
-router_1   | 2019/09/11 01:59:36 [guesslin] wait packet processing 2019-09-11 01:59:36.644420879 +0000 UTC m=+123.628183979
-router_1   | 2019/09/11 01:59:36 Libbpf based AF_XDP drops packet due to error: ipv6 not support
-router_1   | 2019/09/11 01:59:36 [guesslin] packet processed 2019-09-11 01:59:36.644432 +0000 UTC m=+123.628194694
-router_1   | 2019/09/11 01:59:36 [guesslin] libbpf fetch 1 packets
-router_1   | 2019/09/11 01:59:36 [guesslin] wait packet processing 2019-09-11 01:59:36.644493542 +0000 UTC m=+123.628256711
-router_1   | 2019/09/11 01:59:36 Libbpf based AF_XDP drops packet due to error: ipv6 not support
-router_1   | 2019/09/11 01:59:36 [guesslin] packet processed 2019-09-11 01:59:36.644505783 +0000 UTC m=+123.628268968
-router_1   | 2019/09/11 02:46:01 [guesslin] libbpf fetch 1 packets
-router_1   | 2019/09/11 02:46:01 Libbpf based AF_XDP drops packet due to error: ipv6 not support
-router_1   | 2019/09/11 02:46:01 [guesslin] wait packet processing 2019-09-11 02:46:01.923675357 +0000 UTC m=+2908.907437576
-router_1   | 2019/09/11 02:46:01 [guesslin] packet processed 2019-09-11 02:46:01.923853074 +0000 UTC m=+2908.907616213
-router_1   | 2019/09/11 02:46:01 [guesslin] libbpf fetch 1 packets
-router_1   | 2019/09/11 02:46:01 [guesslin] wait packet processing 2019-09-11 02:46:01.924111763 +0000 UTC m=+2908.907874977
-router_1   | 2019/09/11 02:46:01 [guesslin] packet processed 2019-09-11 02:46:01.924141386 +0000 UTC m=+2908.907904596
-router_1   | 2019/09/11 02:46:01 [guesslin] libbpf fetch 1 packets
-router_1   | 2019/09/11 02:46:01 [guesslin] wait packet processing 2019-09-11 02:46:01.924238141 +0000 UTC m=+2908.908001345
-router_1   | 2019/09/11 02:46:01 [guesslin] packet processed 2019-09-11 02:46:01.924264635 +0000 UTC m=+2908.908027949
-router_1   | 2019/09/11 02:46:01 [guesslin] libbpf fetch 1 packets
-router_1   | 2019/09/11 02:46:01 [guesslin] wait packet processing 2019-09-11 02:46:01.924877499 +0000 UTC m=+2908.908640866
-router_1   | 2019/09/11 02:46:01 [guesslin] packet processed 2019-09-11 02:46:01.924889224 +0000 UTC m=+2908.908692089
-router_1   | 2019/09/11 02:46:01 [guesslin] libbpf fetch 1 packets
-router_1   | 2019/09/11 02:46:01 [guesslin] wait packet processing 2019-09-11 02:46:01.924948436 +0000 UTC m=+2908.908711545
-router_1   | 2019/09/11 02:46:01 [guesslin] packet processed 2019-09-11 02:46:01.92495657 +0000 UTC m=+2908.908719682
-router_1   | 2019/09/11 02:46:01 [guesslin] libbpf fetch 1 packets
-router_1   | 2019/09/11 02:46:01 [guesslin] wait packet processing 2019-09-11 02:46:01.924970138 +0000 UTC m=+2908.908733240
-router_1   | 2019/09/11 02:46:01 [guesslin] packet processed 2019-09-11 02:46:01.924977463 +0000 UTC m=+2908.908740572
-router_1   | 2019/09/11 02:46:01 [guesslin] libbpf fetch 1 packets
-router_1   | 2019/09/11 02:46:01 [guesslin] wait packet processing 2019-09-11 02:46:01.92499086 +0000 UTC m=+2908.908753151
-router_1   | 2019/09/11 02:46:01 Libbpf based AF_XDP drops packet due to error: ipv6 not support
-router_1   | 2019/09/11 02:46:01 [guesslin] packet processed 2019-09-11 02:46:01.925041801 +0000 UTC m=+2908.908804904
-router_1   | 2019/09/11 02:46:01 [guesslin] libbpf fetch 1 packets
-router_1   | 2019/09/11 02:46:01 [guesslin] wait packet processing 2019-09-11 02:46:01.925055902 +0000 UTC m=+2908.908819031
-router_1   | 2019/09/11 02:46:01 Libbpf based AF_XDP drops packet due to error: ipv6 not support
-router_1   | 2019/09/11 02:46:01 [guesslin] packet processed 2019-09-11 02:46:01.925066371 +0000 UTC m=+2908.908829478
-router_1   | 2019/09/11 02:46:01 [guesslin] libbpf fetch 1 packets
-router_1   | 2019/09/11 02:46:01 Libbpf based AF_XDP drops packet due to error: ipv6 not support
-router_1   | 2019/09/11 02:46:01 [guesslin] wait packet processing 2019-09-11 02:46:01.9250782 +0000 UTC m=+2908.908908197
-router_1   | 2019/09/11 02:46:01 [guesslin] packet processed 2019-09-11 02:46:01.925155737 +0000 UTC m=+2908.908918837
-router_1   | 2019/09/11 02:46:01 [guesslin] libbpf fetch 1 packets
-router_1   | 2019/09/11 02:46:01 Libbpf based AF_XDP drops packet due to error: ipv6 not support
-router_1   | 2019/09/11 02:46:01 [guesslin] wait packet processing 2019-09-11 02:46:01.925175273 +0000 UTC m=+2908.908938448
-router_1   | 2019/09/11 02:46:01 [guesslin] packet processed 2019-09-11 02:46:01.925242361 +0000 UTC m=+2908.909005655
-router_1   | 2019/09/11 02:46:01 [guesslin] libbpf fetch 1 packets
-router_1   | 2019/09/11 02:46:01 [guesslin] wait packet processing 2019-09-11 02:46:01.925268845 +0000 UTC m=+2908.909031985
-router_1   | 2019/09/11 02:46:01 [guesslin] packet processed 2019-09-11 02:46:01.925275975 +0000 UTC m=+2908.909039083
-router_1   | 2019/09/11 02:46:01 [guesslin] libbpf fetch 1 packets
-router_1   | 2019/09/11 02:46:01 [guesslin] wait packet processing 2019-09-11 02:46:01.92552722 +0000 UTC m=+2908.909290350
-router_1   | 2019/09/11 02:46:01 [guesslin] packet processed 2019-09-11 02:46:01.925537375 +0000 UTC m=+2908.909300486
-router_1   | 2019/09/11 02:46:01 [guesslin] libbpf fetch 1 packets
-router_1   | 2019/09/11 02:46:01 [guesslin] wait packet processing 2019-09-11 02:46:01.925570663 +0000 UTC m=+2908.909333934
-router_1   | 2019/09/11 02:46:01 [guesslin] packet processed 2019-09-11 02:46:01.925621613 +0000 UTC m=+2908.909384792
-router_1   | 2019/09/11 02:46:01 [guesslin] libbpf fetch 1 packets
-router_1   | 2019/09/11 02:46:01 [guesslin] wait packet processing 2019-09-11 02:46:01.92563739 +0000 UTC m=+2908.909400609
-router_1   | 2019/09/11 02:46:01 [guesslin] packet processed 2019-09-11 02:46:01.925645372 +0000 UTC m=+2908.909408482
-router_1   | 2019/09/11 02:46:01 [guesslin] libbpf fetch 1 packets
-router_1   | 2019/09/11 02:46:01 [guesslin] wait packet processing 2019-09-11 02:46:01.925761814 +0000 UTC m=+2908.909525001
-router_1   | 2019/09/11 02:46:01 [guesslin] packet processed 2019-09-11 02:46:01.92577162 +0000 UTC m=+2908.909534860
-router_1   | 2019/09/11 02:46:01 [guesslin] libbpf fetch 1 packets
-router_1   | 2019/09/11 02:46:01 [guesslin] wait packet processing 2019-09-11 02:46:01.925797369 +0000 UTC m=+2908.909560470
-router_1   | 2019/09/11 02:46:01 [guesslin] packet processed 2019-09-11 02:46:01.925805053 +0000 UTC m=+2908.909568352
+router_1   | 2019/09/18 04:06:48 ===== Example setup =====
+router_1   | 2019/09/18 04:06:48 ===== Example start =====
+router_1   | 2019/09/18 04:06:48 ======= Start running driver =======
+router_1   | 2019/09/18 04:06:48 Libbpf runner worker starting
+router_1   | 2019/09/18 04:06:48 Libbpf Run called
+router_1   | 2019/09/18 04:07:40 libbpf fetch 2 packets
+router_1   | 2019/09/18 04:07:40 Packet type IPv6 length 90
+router_1   | 2019/09/18 04:07:40 Libbpf based AF_XDP drops packet due to error: ipv6 not support
+router_1   | 2019/09/18 04:07:40 Packet type IPv6 length 86
+router_1   | 2019/09/18 04:07:40 Libbpf based AF_XDP drops packet due to error: ipv6 not support
+router_1   | 2019/09/18 04:08:04 libbpf fetch 15 packets
+router_1   | 2019/09/18 04:08:04 Packet type IPv6 length 90
+router_1   | 2019/09/18 04:08:04 Libbpf based AF_XDP drops packet due to error: ipv6 not support
+router_1   | 2019/09/18 04:08:04 Packet type IPv6 length 70
+router_1   | 2019/09/18 04:08:04 Libbpf based AF_XDP drops packet due to error: ipv6 not support
+router_1   | 2019/09/18 04:08:04 Packet type IPv6 length 90
+router_1   | 2019/09/18 04:08:04 Libbpf based AF_XDP drops packet due to error: ipv6 not support
+router_1   | 2019/09/18 04:08:04 Packet type IPv6 length 70
+router_1   | 2019/09/18 04:08:04 Libbpf based AF_XDP drops packet due to error: ipv6 not support
+router_1   | 2019/09/18 04:08:04 Packet type IPv6 length 70
+router_1   | 2019/09/18 04:08:04 Libbpf based AF_XDP drops packet due to error: ipv6 not support
+router_1   | 2019/09/18 04:08:04 Packet type IPv6 length 70
+router_1   | 2019/09/18 04:08:04 Libbpf based AF_XDP drops packet due to error: ipv6 not support
+router_1   | 2019/09/18 04:08:04 Packet type ARP length 42
+router_1   | 2019/09/18 04:08:04 Packet type IPv4 length 98
+router_1   | 2019/09/18 04:08:04 Packet type ARP length 42
+router_1   | 2019/09/18 04:08:04 Packet type IPv4 length 98
+router_1   | 2019/09/18 04:08:04 Packet type ARP length 42
+router_1   | 2019/09/18 04:08:04 Packet type IPv4 length 98
+router_1   | 2019/09/18 04:08:04 Packet type IPv4 length 98
+router_1   | 2019/09/18 04:08:04 Packet type IPv4 length 98
+router_1   | 2019/09/18 04:08:04 Packet type IPv4 length 98
+router_1   | 2019/09/18 04:08:04 Packet type IPv4 length 98
+router_1   | 2019/09/18 04:08:17 libbpf fetch 16 packets
+router_1   | 2019/09/18 04:08:17 Packet type IPv4 length 98
+router_1   | 2019/09/18 04:08:17 Packet type IPv4 length 98
+router_1   | 2019/09/18 04:08:17 Packet type IPv4 length 98
+router_1   | 2019/09/18 04:08:17 Packet type IPv4 length 98
+router_1   | 2019/09/18 04:08:17 Packet type IPv4 length 98
+router_1   | 2019/09/18 04:08:17 Packet type IPv4 length 98
+router_1   | 2019/09/18 04:08:17 Packet type IPv4 length 98
+router_1   | 2019/09/18 04:08:17 Packet type IPv4 length 98
+router_1   | 2019/09/18 04:08:17 Packet type IPv4 length 98
+router_1   | 2019/09/18 04:08:17 Packet type IPv6 length 70
+router_1   | 2019/09/18 04:08:17 Libbpf based AF_XDP drops packet due to error: ipv6 not support
+router_1   | 2019/09/18 04:08:17 Packet type ARP length 42
+router_1   | 2019/09/18 04:08:17 Packet type ARP length 42
+router_1   | 2019/09/18 04:08:17 Packet type ARP length 42
+router_1   | 2019/09/18 04:08:17 Packet type ARP length 42
+router_1   | 2019/09/18 04:08:17 Packet type ARP length 42
+router_1   | 2019/09/18 04:08:17 Packet type ARP length 42
+router_1   | 2019/09/18 04:08:17 libbpf fetch 6 packets
+router_1   | 2019/09/18 04:08:17 Packet type IPv4 length 98
+router_1   | 2019/09/18 04:08:17 Packet type IPv4 length 98
+router_1   | 2019/09/18 04:08:17 Packet type IPv4 length 98
+router_1   | 2019/09/18 04:08:17 Packet type IPv4 length 98
+router_1   | 2019/09/18 04:08:17 Packet type IPv4 length 98
+router_1   | 2019/09/18 04:08:17 Packet type IPv4 length 98
+router_1   | 2019/09/18 04:08:43 libbpf fetch 16 packets
+router_1   | 2019/09/18 04:08:43 Packet type ARP length 42
+router_1   | 2019/09/18 04:08:43 Packet type ARP length 42
+router_1   | 2019/09/18 04:08:43 Packet type ARP length 42
+router_1   | 2019/09/18 04:08:43 Packet type ARP length 42
+router_1   | 2019/09/18 04:08:43 Packet type ARP length 42
+router_1   | 2019/09/18 04:08:43 Packet type ARP length 42
+router_1   | 2019/09/18 04:08:43 Packet type ARP length 42
+router_1   | 2019/09/18 04:08:43 Packet type ARP length 42
+router_1   | 2019/09/18 04:08:43 Packet type ARP length 42
+router_1   | 2019/09/18 04:08:43 Packet type ARP length 42
+router_1   | 2019/09/18 04:08:43 Packet type IPv4 length 98
+router_1   | 2019/09/18 04:08:43 Packet type IPv4 length 98
+router_1   | 2019/09/18 04:08:43 Packet type IPv4 length 98
+router_1   | 2019/09/18 04:08:43 Packet type IPv4 length 98
+router_1   | 2019/09/18 04:08:43 Packet type IPv4 length 98
+router_1   | 2019/09/18 04:08:43 Packet type IPv4 length 98
+router_1   | 2019/09/18 04:08:43 libbpf fetch 2 packets
+router_1   | 2019/09/18 04:08:43 Packet type IPv4 length 98
+router_1   | 2019/09/18 04:08:43 Packet type IPv4 length 98

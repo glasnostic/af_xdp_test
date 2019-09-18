@@ -1,0 +1,29 @@
+#!/bin/bash
+
+function Red() {
+  echo -e "\033[31m$1\033[0m"
+}
+
+function Green() {
+  echo -e "\033[32m$1\033[0m"
+}
+
+function Yellow() {
+  echo -e "\033[33m$1\033[0m"
+}
+
+function Blue() {
+  echo -e "\033[34m$1\033[0m"
+}
+
+function Magenta() {
+  echo -e "\033[35m$1\033[0m"
+}
+
+function Cyan() {
+  echo -e "\033[36m$1\033[0m"
+}
+
+function LightGray() {
+  echo -e "\033[37m$1\033[0m"
+}

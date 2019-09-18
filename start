@@ -1,0 +1,21 @@
+#!/bin/bash
+
+BASEDIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+
+source $BASEDIR/scripts/color
+
+Green "checking HugePages_Total on system"
+if [ $(cat /proc/meminfo | grep HugePages_Total | awk '{print $2}') == 0 ]; then
+  Green "mounting hugepages for system"
+  bash -c $BASEDIR/scripts/huge
+fi
+
+Green "building example docker images"
+docker-compose build
+
+Green "start up example docker container in background"
+docker-compose up -d
+
+docker-compose logs -f client
+
+Magenta "check logs from containers by running 'docker-compose logs [router|client|service]'"

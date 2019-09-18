@@ -13,6 +13,7 @@ services:
       - net.ipv6.conf.all.disable_ipv6=1
     environment:
       - DRIVER=afxdp
+      - DEBUG=false
       - ROUTER=172.16.239.12
       - ROUTER_MAC=02:42:ac:10:ef:0c
       - CLIENT=172.16.239.13
@@ -31,6 +32,7 @@ services:
     sysctls:
       - net.ipv6.conf.all.disable_ipv6=1
     environment:
+      - DEBUG=true
       - ROUTER=172.16.239.12
       - ROUTER_MAC=02:42:ac:10:ef:0c
       - CLIENT=172.16.239.13
@@ -49,6 +51,7 @@ services:
     sysctls:
       - net.ipv6.conf.all.disable_ipv6=1
     environment:
+      - DEBUG=false
       - ROUTER=172.16.239.12
       - ROUTER_MAC=02:42:ac:10:ef:0c
       - CLIENT=172.16.239.13

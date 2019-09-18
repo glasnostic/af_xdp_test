@@ -11,16 +11,45 @@ client_1   | 1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN
 client_1   |     link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
 client_1   | 2: sit0@NONE: <NOARP> mtu 1480 qdisc noop state DOWN mode DEFAULT group default qlen 1000
 client_1   |     link/sit 0.0.0.0 brd 0.0.0.0
-client_1   | 97: eth0@if98: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP mode DEFAULT group default
-client_1   |     link/ether 02:42:ac:10:ef:0d brd ff:ff:ff:ff:ff:ff link-netnsid 0
-client_1   | * Expire in 0 ms for 6 (transfer 0x55d965d537a0)
-client_1   | * Expire in 60000 ms for 8 (transfer 0x55d965d537a0)
-client_1   | * Expire in 10000 ms for 2 (transfer 0x55d965d537a0)
+client_1   | 31: eth0@if32: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP mode DEFAULT group default
+client_1   |     link/ether 02:42:ac:10:ef:0b brd ff:ff:ff:ff:ff:ff link-netnsid 0
+client_1   | ping test to 172.16.239.14
+client_1   | PING 172.16.239.14 (172.16.239.14): 56 data bytes
+client_1   | 64 bytes from 172.16.239.14: seq=0 ttl=64 time=0.100 ms
+client_1   | 64 bytes from 172.16.239.14: seq=1 ttl=64 time=0.171 ms
+client_1   | 64 bytes from 172.16.239.14: seq=2 ttl=64 time=0.077 ms
+client_1   | 64 bytes from 172.16.239.14: seq=3 ttl=64 time=0.174 ms
+client_1   | 64 bytes from 172.16.239.14: seq=4 ttl=64 time=0.078 ms
+client_1   | 64 bytes from 172.16.239.14: seq=5 ttl=64 time=0.075 ms
+client_1   | 64 bytes from 172.16.239.14: seq=6 ttl=64 time=0.082 ms
+client_1   | 64 bytes from 172.16.239.14: seq=7 ttl=64 time=0.081 ms
+client_1   | 64 bytes from 172.16.239.14: seq=8 ttl=64 time=0.077 ms
+client_1   | 64 bytes from 172.16.239.14: seq=9 ttl=64 time=0.077 ms
+client_1   | 64 bytes from 172.16.239.14: seq=10 ttl=64 time=0.076 ms
+client_1   | 64 bytes from 172.16.239.14: seq=11 ttl=64 time=0.231 ms
+client_1   | 64 bytes from 172.16.239.14: seq=12 ttl=64 time=0.076 ms
+client_1   | 64 bytes from 172.16.239.14: seq=13 ttl=64 time=0.134 ms
+client_1   | 64 bytes from 172.16.239.14: seq=14 ttl=64 time=0.083 ms
+client_1   | 64 bytes from 172.16.239.14: seq=15 ttl=64 time=0.077 ms
+client_1   |
+client_1   | --- 172.16.239.14 ping statistics ---
+client_1   | 16 packets transmitted, 16 packets received, 0% packet loss
+client_1   | round-trip min/avg/max = 0.075/0.104/0.231 ms
+client_1   | ping test to 172.16.239.12
+client_1   | PING 172.16.239.12 (172.16.239.12): 56 data bytes
+client_1   |
+client_1   | --- 172.16.239.12 ping statistics ---
+client_1   | 16 packets transmitted, 0 packets received, 100% packet loss
+client_1   | curl test to 172.16.239.14
+client_1   | * Expire in 0 ms for 6 (transfer 0x55f9967957a0)
+client_1   | * Expire in 60000 ms for 8 (transfer 0x55f9967957a0)
+client_1   | * Expire in 10000 ms for 2 (transfer 0x55f9967957a0)
 client_1   | *   Trying 172.16.239.14...
 client_1   | * TCP_NODELAY set
-client_1   | * Expire in 200 ms for 4 (transfer 0x55d965d537a0)
+client_1   | * Expire in 200 ms for 4 (transfer 0x55f9967957a0)
 client_1   |   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
 client_1   |                                  Dload  Upload   Total   Spent    Left  Speed
+0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0* Connected to 172.16.239.14 (172.16.239.14) port 80 (#0)
 client_1   | > GET / HTTP/1.1
 client_1   | > Host: 172.16.239.14
 client_1   | > User-Agent: curl/7.64.0
@@ -29,14 +58,14 @@ client_1   | >
 client_1   | * HTTP 1.0, assume close after body
 client_1   | < HTTP/1.0 200 OK
 client_1   | < Server: SimpleHTTP/0.6 Python/2.7.16
-client_1   | < Date: Wed, 11 Sep 2019 02:45:54 GMT
+client_1   | < Date: Wed, 18 Sep 2019 04:07:59 GMT
 client_1   | < Content-type: text/html
 client_1   | < Content-Length: 70
-client_1   | < Last-Modified: Wed, 11 Sep 2019 01:55:06 GMT
+client_1   | < Last-Modified: Tue, 17 Sep 2019 02:09:03 GMT
 client_1   | <
 client_1   | { [70 bytes data]
+100    70  100    70    0     0   3333      0 --:--:-- --:--:-- --:--:--  4666
 client_1   | * Closing connection 0
-client_1   | curl test to 172.16.239.14
 client_1   | <html>
 client_1   |   <head>
 client_1   |   </head>
@@ -44,35 +73,30 @@ client_1   |   <body>
 client_1   |   <h1>Hello</h1>
 client_1   |   </body>
 client_1   | </html>
-client_1   | finish curl test to 172.16.239.14
 client_1   | curl test to 172.16.239.12
-client_1   | * Expire in 0 ms for 6 (transfer 0x55c8489487a0)
-client_1   | * Expire in 60000 ms for 8 (transfer 0x55c8489487a0)
-client_1   | * Expire in 10000 ms for 2 (transfer 0x55c8489487a0)
+client_1   | * Expire in 0 ms for 6 (transfer 0x55f45e7877a0)
+client_1   | * Expire in 60000 ms for 8 (transfer 0x55f45e7877a0)
+client_1   | * Expire in 10000 ms for 2 (transfer 0x55f45e7877a0)
 client_1   | *   Trying 172.16.239.12...
 client_1   | * TCP_NODELAY set
-client_1   | * Expire in 200 ms for 4 (transfer 0x55c8489487a0)
-client_1   |   % Total    % Received % Xferd  Average Speedfinish curl test to 172.16.239.12
-client_1   | ping test to 172.16.239.14
-client_1   | PING 172.16.239.14 (172.16.239.14): 56 data bytes
-client_1   | 64 bytes from 172.16.239.14: seq=0 ttl=64 time=0.121 ms
-client_1   |    Time    Time     Time  Current
+client_1   | * Expire in 200 ms for 4 (transfer 0x55f45e7877a0)
+client_1   |   % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
 client_1   |                                  Dload  Upload   Total   Spent    Left  Speed
-client_1   | * Failed to connect to 172.16.239.12 port 80: Connection refused
+0     0    0     0    0     0      0      0 --:--:--  0:00:09 --:--:--     0* Connection timed out after 10001 milliseconds
+0     0    0     0    0     0      0      0 --:--:--  0:00:10 --:--:--     0
 client_1   | * Closing connection 0
-client_1   | curl: (7) Failed to connect to 172.16.239.12 port 80: Connection refused
-client_1   | 64 bytes from 172.16.239.14: seq=1 ttl=64 time=0.085 ms
-client_1   | 64 bytes from 172.16.239.14: seq=2 ttl=64 time=0.086 ms
-client_1   | 64 bytes from 172.16.239.14: seq=3 ttl=64 time=0.087 ms
-client_1   | 64 bytes from 172.16.239.14: seq=4 ttl=64 time=0.179 ms
+client_1   | curl: (28) Connection timed out after 10001 milliseconds
+client_1   | iperf test to 172.16.239.14
+client_1   | Connecting to host 172.16.239.14, port 3091
+client_1   | [  5] local 172.16.239.13 port 35316 connected to 172.16.239.14 port 3091
+client_1   | [ ID] Interval           Transfer     Bitrate         Retr  Cwnd
+client_1   | [  5]   0.00-0.35   sec  30.5 MBytes   735 Mbits/sec    0    393 KBytes
+client_1   | - - - - - - - - - - - - - - - - - - - - - - - - -
+client_1   | [ ID] Interval           Transfer     Bitrate         Retr
+client_1   | [  5]   0.00-0.35   sec  30.5 MBytes   735 Mbits/sec    0             sender
+client_1   | [  5]   0.00-0.35   sec  27.0 MBytes   647 Mbits/sec                  receiver
 client_1   |
-client_1   | --- 172.16.239.14 ping statistics ---
-client_1   | 5 packets transmitted, 5 packets received, 0% packet loss
-client_1   | round-trip min/avg/max = 0.085/0.111/0.179 ms
-client_1   | finish ping test to 172.16.239.14
-client_1   | ping test to 172.16.239.12
-client_1   | PING 172.16.239.12 (172.16.239.12): 56 data bytes
-client_1   |
-client_1   | --- 172.16.239.12 ping statistics ---
-client_1   | 5 packets transmitted, 0 packets received, 100% packet loss
-client_1   | finish ping test to 172.16.239.12
+client_1   | iperf Done.
+client_1   | iperf test to 172.16.239.12
+client_1   | iperf3: error - unable to connect to server: Operation timed out
+afxdptest_client_1 exited with code 1

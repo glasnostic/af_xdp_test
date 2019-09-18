@@ -39,8 +39,17 @@ However, for simplicity we just wanted one network interface to be handled by AF
 To run the example, you'll need to install Docker (tested with version 19.03) 
 on a Linux 5.1 kernel based system and start:
 
-    $ ./huge 			    # mount huge pages (required by the example)
-    $ docker-compose build	# build example Docker images
-    $ docker-compose up		# run the example
+    $ ./start                   # run this example
+    $ ./stop                    # stop running example
+
+
+Or you want to run this example step by step you can following commands:
+
+    $ ./huge 				# mount huge pages (required by the example)
+    $ docker-compose build		# build example Docker images
+    $ docker-compose up -d		# run the example
+    $ docker-compose logs -f <role> 	# check log message of role
+    					# here role could be router, client or service
+    $ docker-compose down		# stop running example
     
 After running this test case, you should get the results shown in the [./result](./result) directory.

@@ -130,7 +130,7 @@ func (l *libbpfRunnerLinux) worker() {
 			continue
 		}
 		total := int(C.poll_packets_with_libbpf(C.size_t(BatchFrames)))
-		log.Printf("[guesslin] libbpf fetch %d packets\n", total)
+		log.Printf("libbpf fetch %d packets\n", total)
 		if total > 0 {
 			// most likely BatchFrames(16) packets in FQ waiting for proceed
 			for i := 0; i < total; i++ {
