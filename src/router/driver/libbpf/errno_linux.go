@@ -10,6 +10,7 @@ import (
 )
 
 var (
+	ErrInvalidLibbpf = errors.New("invalid libbpf init")
 	ErrAlreadyInited = errors.New("already been inited")
 	ErrAllocXskPtr   = errors.New("allocate xsk pointer")
 	ErrAllocUmemCfg  = errors.New("allocate umem config")
@@ -18,12 +19,15 @@ var (
 	ErrGetNicIdx     = errors.New("get nic index")
 	ErrLinkBpfToXsk  = errors.New("link bpf to xsk")
 	ErrReserveFQBuf  = errors.New("reserve FQ buffer")
+	ErrAllocMempool  = errors.New("allocate mempool failed")
+	ErrAllocInqueue  = errors.New("allocate in-queue failed")
+	ErrAllocMemBufs  = errors.New("allocate mem-bufs failed")
 )
 
-var initErrors map[int]error
+var afxdpErrors map[int]error
 
 func init() {
-	initErrors = map[int]error{
+	afxdpErrors = map[int]error{
 		int(C.E_ALREADY_INITED):  ErrAlreadyInited,
 		int(C.E_ALLOC_XSK_PTR):   ErrAllocXskPtr,
 		int(C.E_ALLOC_UMEM_CFG):  ErrAllocUmemCfg,
@@ -32,5 +36,8 @@ func init() {
 		int(C.E_GET_NIC_IDX):     ErrGetNicIdx,
 		int(C.E_LINK_BPF_TO_XSK): ErrLinkBpfToXsk,
 		int(C.E_RESERVE_FQ_BUF):  ErrReserveFQBuf,
+		int(C.E_ALLOC_MEMPOOL):   ErrAllocMempool,
+		int(C.E_ALLOC_INQUEUE):   ErrAllocInqueue,
+		int(C.E_ALLOC_MEM_BUFS):  ErrAllocMemBufs,
 	}
 }
