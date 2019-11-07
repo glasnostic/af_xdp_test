@@ -9,7 +9,7 @@
 #include "mempool.h"
 
 struct membuf {
-	void *addr;
+	uint64_t addr;
 	uint32_t len;
 };
 
@@ -35,8 +35,9 @@ struct libbpf {
 	struct membuf *inqueue;   // membuf for reading packets
 	struct membuf *outqueue;  // membuf for sending packets
 	struct pollfd fds;        //
-	void **bufs;              //
+	uint64_t *bufs;           //
 	int current;              // current idx of inqueue
+	int current_cached;       // current cached size of inqueue
 	int err;                  // error code
 };
 

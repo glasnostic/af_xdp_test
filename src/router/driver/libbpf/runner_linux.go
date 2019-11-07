@@ -133,9 +133,9 @@ func (l *libbpfRunnerLinux) worker() {
 	log.Println("Libbpf runner worker starting")
 	defer log.Println("Libbpf runner worker returned")
 	for atomic.LoadUint64(&l.flag) == process {
-		total := int(C.libbpf_xsk__poll(l.libbpf, C.size_t(BatchFrames)))
+		total := int(C.libbpf_xsk__pull_rx(l.libbpf, C.size_t(BatchFrames)))
 		// most likely BatchFrames(C.FRAME_BATCH_SIZE) packets in FQ waiting for proceed
-		log.Printf("libbpf fetch %d packets\n", total)
+		// log.Printf("libbpf fetch %d packets\n", total)
 		for i := 0; i < total; i++ {
 			l.fetchOnePacketFromXSK()
 			if _, ok := <-l.next; !ok {
