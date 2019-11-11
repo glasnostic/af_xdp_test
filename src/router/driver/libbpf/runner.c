@@ -94,11 +94,11 @@ struct libbpf *libbpf_xsk__init(char *ifname, int queue_id)
 	struct xsk_umem_config umem_config = {
 		.fill_size = LIBBPF_XSK_RING_PROD_NUM_DESCS,
 		.comp_size = LIBBPF_XSK_RING_CONS_NUM_DESCS,
-		.frame_size = LIBBPF_XSK_MEM_FRAME_SIZE,
+		.frame_size = LIBBPF_XSK_RING_FRAME_SIZE,
 		.frame_headroom = LIBBPF_XSK_RING_FRAME_HEADROOM,
 	};
 
-	xsk->umem = configure_xsk_umem(ifname, &umem_config, LIBBPF_XSK_MEMPOOL_NUM_FRAMES * LIBBPF_XSK_MEM_FRAME_SIZE);
+	xsk->umem = configure_xsk_umem(ifname, &umem_config, LIBBPF_XSK_MEMPOOL_NUM_FRAMES * LIBBPF_XSK_RING_FRAME_SIZE);
 	if (!xsk->umem) {
 		// allocate memory for umem ptr failed
 		ptr->err = E_ALLOC_UMEM_PTR;
@@ -106,7 +106,7 @@ struct libbpf *libbpf_xsk__init(char *ifname, int queue_id)
 	}
 
 	// create mempool object
-	ptr->pool = mempool_create((uint64_t)xsk->umem->buf, LIBBPF_XSK_MEMPOOL_NUM_FRAMES, LIBBPF_XSK_MEM_FRAME_SIZE);
+	ptr->pool = mempool_create((uint64_t)xsk->umem->buf, LIBBPF_XSK_MEMPOOL_NUM_FRAMES, LIBBPF_XSK_RING_FRAME_SIZE);
 	if (!ptr->pool) {
 		ptr->err = E_ALLOC_MEMPOOL;
 		goto init_out;
