@@ -7,81 +7,86 @@ router_1   |    tx-tcp-segmentation: off [requested on]
 router_1   |    tx-tcp-ecn-segmentation: off [requested on]
 router_1   |    tx-tcp-mangleid-segmentation: off [requested on]
 router_1   |    tx-tcp6-segmentation: off [requested on]
-router_1   | 2019/09/18 04:06:48 ===== Example setup =====
-router_1   | 2019/09/18 04:06:48 ===== Example start =====
-router_1   | 2019/09/18 04:06:48 ======= Start running driver =======
-router_1   | 2019/09/18 04:06:48 Libbpf runner worker starting
-router_1   | 2019/09/18 04:06:48 Libbpf Run called
-router_1   | 2019/09/18 04:07:40 libbpf fetch 2 packets
-router_1   | 2019/09/18 04:07:40 Packet type IPv6 length 90
-router_1   | 2019/09/18 04:07:40 Libbpf based AF_XDP drops packet due to error: ipv6 not support
-router_1   | 2019/09/18 04:07:40 Packet type IPv6 length 86
-router_1   | 2019/09/18 04:07:40 Libbpf based AF_XDP drops packet due to error: ipv6 not support
-router_1   | 2019/09/18 04:08:04 libbpf fetch 15 packets
-router_1   | 2019/09/18 04:08:04 Packet type IPv6 length 90
-router_1   | 2019/09/18 04:08:04 Libbpf based AF_XDP drops packet due to error: ipv6 not support
-router_1   | 2019/09/18 04:08:04 Packet type IPv6 length 70
-router_1   | 2019/09/18 04:08:04 Libbpf based AF_XDP drops packet due to error: ipv6 not support
-router_1   | 2019/09/18 04:08:04 Packet type IPv6 length 90
-router_1   | 2019/09/18 04:08:04 Libbpf based AF_XDP drops packet due to error: ipv6 not support
-router_1   | 2019/09/18 04:08:04 Packet type IPv6 length 70
-router_1   | 2019/09/18 04:08:04 Libbpf based AF_XDP drops packet due to error: ipv6 not support
-router_1   | 2019/09/18 04:08:04 Packet type IPv6 length 70
-router_1   | 2019/09/18 04:08:04 Libbpf based AF_XDP drops packet due to error: ipv6 not support
-router_1   | 2019/09/18 04:08:04 Packet type IPv6 length 70
-router_1   | 2019/09/18 04:08:04 Libbpf based AF_XDP drops packet due to error: ipv6 not support
-router_1   | 2019/09/18 04:08:04 Packet type ARP length 42
-router_1   | 2019/09/18 04:08:04 Packet type IPv4 length 98
-router_1   | 2019/09/18 04:08:04 Packet type ARP length 42
-router_1   | 2019/09/18 04:08:04 Packet type IPv4 length 98
-router_1   | 2019/09/18 04:08:04 Packet type ARP length 42
-router_1   | 2019/09/18 04:08:04 Packet type IPv4 length 98
-router_1   | 2019/09/18 04:08:04 Packet type IPv4 length 98
-router_1   | 2019/09/18 04:08:04 Packet type IPv4 length 98
-router_1   | 2019/09/18 04:08:04 Packet type IPv4 length 98
-router_1   | 2019/09/18 04:08:04 Packet type IPv4 length 98
-router_1   | 2019/09/18 04:08:17 libbpf fetch 16 packets
-router_1   | 2019/09/18 04:08:17 Packet type IPv4 length 98
-router_1   | 2019/09/18 04:08:17 Packet type IPv4 length 98
-router_1   | 2019/09/18 04:08:17 Packet type IPv4 length 98
-router_1   | 2019/09/18 04:08:17 Packet type IPv4 length 98
-router_1   | 2019/09/18 04:08:17 Packet type IPv4 length 98
-router_1   | 2019/09/18 04:08:17 Packet type IPv4 length 98
-router_1   | 2019/09/18 04:08:17 Packet type IPv4 length 98
-router_1   | 2019/09/18 04:08:17 Packet type IPv4 length 98
-router_1   | 2019/09/18 04:08:17 Packet type IPv4 length 98
-router_1   | 2019/09/18 04:08:17 Packet type IPv6 length 70
-router_1   | 2019/09/18 04:08:17 Libbpf based AF_XDP drops packet due to error: ipv6 not support
-router_1   | 2019/09/18 04:08:17 Packet type ARP length 42
-router_1   | 2019/09/18 04:08:17 Packet type ARP length 42
-router_1   | 2019/09/18 04:08:17 Packet type ARP length 42
-router_1   | 2019/09/18 04:08:17 Packet type ARP length 42
-router_1   | 2019/09/18 04:08:17 Packet type ARP length 42
-router_1   | 2019/09/18 04:08:17 Packet type ARP length 42
-router_1   | 2019/09/18 04:08:17 libbpf fetch 6 packets
-router_1   | 2019/09/18 04:08:17 Packet type IPv4 length 98
-router_1   | 2019/09/18 04:08:17 Packet type IPv4 length 98
-router_1   | 2019/09/18 04:08:17 Packet type IPv4 length 98
-router_1   | 2019/09/18 04:08:17 Packet type IPv4 length 98
-router_1   | 2019/09/18 04:08:17 Packet type IPv4 length 98
-router_1   | 2019/09/18 04:08:17 Packet type IPv4 length 98
-router_1   | 2019/09/18 04:08:43 libbpf fetch 16 packets
-router_1   | 2019/09/18 04:08:43 Packet type ARP length 42
-router_1   | 2019/09/18 04:08:43 Packet type ARP length 42
-router_1   | 2019/09/18 04:08:43 Packet type ARP length 42
-router_1   | 2019/09/18 04:08:43 Packet type ARP length 42
-router_1   | 2019/09/18 04:08:43 Packet type ARP length 42
-router_1   | 2019/09/18 04:08:43 Packet type ARP length 42
-router_1   | 2019/09/18 04:08:43 Packet type ARP length 42
-router_1   | 2019/09/18 04:08:43 Packet type ARP length 42
-router_1   | 2019/09/18 04:08:43 Packet type ARP length 42
-router_1   | 2019/09/18 04:08:43 Packet type ARP length 42
-router_1   | 2019/09/18 04:08:43 Packet type IPv4 length 98
-router_1   | 2019/09/18 04:08:43 Packet type IPv4 length 98
-router_1   | 2019/09/18 04:08:43 Packet type IPv4 length 98
-router_1   | 2019/09/18 04:08:43 Packet type IPv4 length 98
-router_1   | 2019/09/18 04:08:43 Packet type IPv4 length 98
-router_1   | 2019/09/18 04:08:43 Packet type IPv4 length 98
-router_1   | 2019/09/18 04:08:43 libbpf fetch 2 packets
-router_1   | 2019/09/18 04:08:43 Packet type IPv4 length 98
-router_1   | 2019/09/18 04:08:43 Packet type IPv4 length 98
+router_1   | 2019/11/12 05:23:10 ===== Example setup =====
+router_1   | 2019/11/12 05:23:10 ===== Example start =====
+router_1   | 2019/11/12 05:23:10 ======= Start running driver =======
+router_1   | 2019/11/12 05:23:10 Libbpf runner worker starting
+router_1   | 2019/11/12 05:23:10 Libbpf Run called
+router_1   | 2019/11/12 05:23:11 Packet type IPv6 length 86
+router_1   | 2019/11/12 05:23:11 Libbpf based AF_XDP drops packet due to error: ipv6 not support
+router_1   | 2019/11/12 05:23:11 Packet type IPv6 length 90
+router_1   | 2019/11/12 05:23:11 Libbpf based AF_XDP drops packet due to error: ipv6 not support
+router_1   | 2019/11/12 05:23:12 Packet type IPv6 length 90
+router_1   | 2019/11/12 05:23:12 Libbpf based AF_XDP drops packet due to error: ipv6 not support
+router_1   | 2019/11/12 05:23:12 Packet type IPv6 length 70
+router_1   | 2019/11/12 05:23:12 Libbpf based AF_XDP drops packet due to error: ipv6 not support
+router_1   | 2019/11/12 05:23:13 Packet type IPv6 length 90
+router_1   | 2019/11/12 05:23:13 Libbpf based AF_XDP drops packet due to error: ipv6 not support
+router_1   | 2019/11/12 05:23:16 Packet type IPv6 length 70
+router_1   | 2019/11/12 05:23:16 Libbpf based AF_XDP drops packet due to error: ipv6 not support
+router_1   | 2019/11/12 05:23:25 Packet type IPv6 length 70
+router_1   | 2019/11/12 05:23:25 Libbpf based AF_XDP drops packet due to error: ipv6 not support
+router_1   | 2019/11/12 05:23:41 Packet type IPv6 length 70
+router_1   | 2019/11/12 05:23:41 Libbpf based AF_XDP drops packet due to error: ipv6 not support
+router_1   | 2019/11/12 05:23:55 Packet type ARP length 42
+router_1   | 2019/11/12 05:23:56 Packet type IPv4 length 98
+router_1   | 2019/11/12 05:23:56 Packet type IPv4 length 98
+router_1   | 2019/11/12 05:23:56 Packet type ARP length 42
+router_1   | 2019/11/12 05:23:57 Packet type IPv4 length 98
+router_1   | 2019/11/12 05:23:57 Packet type IPv4 length 98
+router_1   | 2019/11/12 05:23:57 Packet type ARP length 42
+router_1   | 2019/11/12 05:23:58 Packet type IPv4 length 98
+router_1   | 2019/11/12 05:23:58 Packet type IPv4 length 98
+router_1   | 2019/11/12 05:23:59 Packet type IPv4 length 98
+router_1   | 2019/11/12 05:23:59 Packet type IPv4 length 98
+router_1   | 2019/11/12 05:24:00 Packet type IPv4 length 98
+router_1   | 2019/11/12 05:24:00 Packet type IPv4 length 98
+router_1   | 2019/11/12 05:24:01 Packet type IPv4 length 98
+router_1   | 2019/11/12 05:24:01 Packet type IPv4 length 98
+router_1   | 2019/11/12 05:24:02 Packet type IPv4 length 98
+router_1   | 2019/11/12 05:24:02 Packet type IPv4 length 98
+router_1   | 2019/11/12 05:24:03 Packet type IPv4 length 98
+router_1   | 2019/11/12 05:24:03 Packet type IPv4 length 98
+router_1   | 2019/11/12 05:24:04 Packet type IPv4 length 98
+router_1   | 2019/11/12 05:24:04 Packet type IPv4 length 98
+router_1   | 2019/11/12 05:24:05 Packet type IPv4 length 98
+router_1   | 2019/11/12 05:24:05 Packet type IPv4 length 98
+router_1   | 2019/11/12 05:24:06 Packet type IPv4 length 98
+router_1   | 2019/11/12 05:24:06 Packet type IPv4 length 98
+router_1   | 2019/11/12 05:24:07 Packet type IPv4 length 98
+router_1   | 2019/11/12 05:24:07 Packet type IPv4 length 98
+router_1   | 2019/11/12 05:24:08 Packet type IPv4 length 98
+router_1   | 2019/11/12 05:24:08 Packet type IPv4 length 98
+router_1   | 2019/11/12 05:24:09 Packet type IPv4 length 98
+router_1   | 2019/11/12 05:24:09 Packet type IPv4 length 98
+router_1   | 2019/11/12 05:24:10 Packet type IPv4 length 98
+router_1   | 2019/11/12 05:24:10 Packet type IPv4 length 98
+router_1   | 2019/11/12 05:24:11 Packet type ARP length 42
+router_1   | 2019/11/12 05:24:12 Packet type ARP length 42
+router_1   | 2019/11/12 05:24:13 Packet type ARP length 42
+router_1   | 2019/11/12 05:24:14 Packet type ARP length 42
+router_1   | 2019/11/12 05:24:15 Packet type ARP length 42
+router_1   | 2019/11/12 05:24:16 Packet type ARP length 42
+router_1   | 2019/11/12 05:24:18 Packet type ARP length 42
+router_1   | 2019/11/12 05:24:19 Packet type ARP length 42
+router_1   | 2019/11/12 05:24:20 Packet type ARP length 42
+router_1   | 2019/11/12 05:24:20 Packet type IPv6 length 70
+router_1   | 2019/11/12 05:24:20 Libbpf based AF_XDP drops packet due to error: ipv6 not support
+router_1   | 2019/11/12 05:24:21 Packet type ARP length 42
+router_1   | 2019/11/12 05:24:22 Packet type ARP length 42
+router_1   | 2019/11/12 05:24:23 Packet type ARP length 42
+router_1   | 2019/11/12 05:24:24 Packet type ARP length 42
+router_1   | 2019/11/12 05:24:25 Packet type ARP length 42
+router_1   | 2019/11/12 05:24:26 Packet type ARP length 42
+router_1   | 2019/11/12 05:24:28 Packet type ARP length 42
+router_1   | 2019/11/12 05:24:29 Packet type ARP length 42
+router_1   | 2019/11/12 05:24:30 Packet type ARP length 42
+router_1   | 2019/11/12 05:24:36 Packet type ARP length 42
+router_1   | 2019/11/12 05:24:37 Packet type ARP length 42
+router_1   | 2019/11/12 05:24:38 Packet type ARP length 42
+router_1   | 2019/11/12 05:24:53 Packet type ARP length 42
+router_1   | 2019/11/12 05:24:54 Packet type ARP length 42
+router_1   | 2019/11/12 05:24:55 Packet type ARP length 42
+router_1   | 2019/11/12 05:25:25 Packet type ARP length 42
+router_1   | 2019/11/12 05:25:26 Packet type ARP length 42
+router_1   | 2019/11/12 05:25:27 Packet type ARP length 42
