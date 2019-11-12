@@ -208,11 +208,11 @@ int libbpf_xsk__exit(struct libbpf *ptr)
 // libbpf_xsk__kick_tx
 int libbpf_xsk__kick_tx(struct libbpf *ptr, uint16_t pkts)
 {
+	libbpf_xsk__pull_cq(ptr);
 	xsk_ring_prod__submit(&ptr->xsk->tx, pkts);
 	int res = sendto(xsk_socket__fd(ptr->xsk->xsk), NULL, 0, MSG_DONTWAIT, NULL, 0);
 	if (res < 0 && !ignored(errno)) {
-		libbpf_xsk__pull_cq(ptr);
-		fprintf(stderr, "send packet to xsk_socket failed with \"%s\"\n", strerror(errno));
+		// fprintf(stderr, "send packet to xsk_socket failed with \"%s\"\n", strerror(errno));
 		res = -errno;
 	}
 	return res;
@@ -226,10 +226,10 @@ int libbpf_xsk__pull_rx(struct libbpf *ptr, size_t nb_pkts)
 	size_t received = 0;
 	// xsk_ring_cons__peek will return how many packets landing in RX
 	received = xsk_ring_cons__peek(rx, max_fetch(nb_pkts), &idx_rx);
-	fprintf(stderr, "Try to peek %d but got %d packets\n", max_fetch(nb_pkts), received);
+	// fprintf(stderr, "Try to peek %d but got %d packets\n", max_fetch(nb_pkts), received);
 	// fprintf(stderr, "RX: %d, FQ: %d\n", idx_rx, idx_fq);
-	ring_prod_msg("FQ", fq);
-	ring_cons_msg("RX", rx);
+	// ring_prod_msg("FQ", fq);
+	// ring_cons_msg("RX", rx);
 
 	if (!received) {
 		poll(&ptr->fds, 1, 100);

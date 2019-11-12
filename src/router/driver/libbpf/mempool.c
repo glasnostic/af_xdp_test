@@ -22,7 +22,7 @@ int push(struct mempool *pool, uint64_t addr)
 		return -1;
 	}
 
-	pool->head++;
+	pool->head--;
 	pool->addr[pool->head] = addr;
 
 	return pool->head;
@@ -31,10 +31,6 @@ int push(struct mempool *pool, uint64_t addr)
 // pop should be called after checking there's still element inside mempool
 uint64_t pop(struct mempool *pool)
 {
-	// if (pool->head >= pool->len) {
-	// 	// check if stack still has available elements
-	// 	return NULL;
-	// }
 	return pool->addr[pool->head++];
 }
 
