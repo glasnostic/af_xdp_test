@@ -11,7 +11,7 @@ service_1  | 1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN
 service_1  |     link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
 service_1  | 2: sit0@NONE: <NOARP> mtu 1480 qdisc noop state DOWN mode DEFAULT group default qlen 1000
 service_1  |     link/sit 0.0.0.0 brd 0.0.0.0
-service_1  | 35: eth0@if36: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP mode DEFAULT group default
+service_1  | 38: eth0@if39: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc noqueue state UP mode DEFAULT group default
 service_1  |     link/ether 02:42:ac:10:ef:0a brd ff:ff:ff:ff:ff:ff link-netnsid 0
 service_1  | Serving HTTP on 0.0.0.0 port 80 ...
-service_1  | 172.16.239.13 - - [18/Sep/2019 04:07:59] "GET / HTTP/1.1" 200 -
+service_1  | 172.16.239.13 - - [12/Nov/2019 05:24:11] "GET / HTTP/1.1" 200 -

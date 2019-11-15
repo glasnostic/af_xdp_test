@@ -21,6 +21,7 @@ import (
 	"log"
 	"os"
 	"reflect"
+	"runtime"
 	"strconv"
 	"sync"
 	"sync/atomic"
@@ -30,7 +31,6 @@ import (
 const (
 	DefaultCombinedQueueID = 0
 	BatchFrames            = 1 << 4 // the maximum number of frame we tell AF_XDP we want fetch per poll
-	// BatchFrames            = 1 << 10 // the maximum number of frame we tell AF_XDP we want fetch per poll
 )
 
 const (
@@ -52,15 +52,12 @@ func init() {
 }
 
 type libbpfRunnerLinux struct {
+	libbpf    *C.struct_libbpf
 	flag      uint64
 	incomming chan Packet // channel for incomming packets
 	next      chan bool   // single signal control of incomming packets
 
 	*sync.WaitGroup
-
-	dropped  int
-	passed   int
-	injected int
 }
 
 func newRunner(ifName string) (*libbpfRunnerLinux, error) {
@@ -81,21 +78,22 @@ func (l *libbpfRunnerLinux) Read() <-chan Packet {
 }
 
 func (l *libbpfRunnerLinux) Pass(pkt Packet) {
-	res := int(C.pass_rx_packet_to_tx(C.uint(len(pkt))))
-	l.passed += res
+	// write the packet
+	slice := (*reflect.SliceHeader)(unsafe.Pointer(&pkt))
+	C.libbpf_xsk__pkt_pass(l.libbpf, (*C.uchar)(unsafe.Pointer(slice.Data)), C.size_t(len(pkt)))
 	l.complete()
 }
 
 func (l *libbpfRunnerLinux) New(pkt Packet) {
+	// write new data to current buffer
 	slice := (*reflect.SliceHeader)(unsafe.Pointer(&pkt))
-	C.new_packet_with_libbpf((*C.uchar)(unsafe.Pointer(slice.Data)), C.size_t(len(pkt)))
-	l.injected++
+	C.libbpf_xsk__pkt_write(l.libbpf, (*C.uchar)(unsafe.Pointer(slice.Data)), C.size_t(len(pkt)))
 	l.complete()
 }
 
 func (l *libbpfRunnerLinux) Drop() {
-	C.drop_rx_packet_to_fq()
-	l.dropped++
+	// we have to record the current packet been dropped correctly
+	C.libbpf_xsk__pkt_drop(l.libbpf)
 	l.complete()
 }
 
@@ -103,15 +101,19 @@ func (l *libbpfRunnerLinux) Close() {
 	close(l.next)
 	atomic.StoreUint64(&l.flag, stop)
 	l.Wait()
-	C.exit_afxdp_with_libbpf()
+	C.libbpf_xsk__exit(l.libbpf)
 }
 
 func (l *libbpfRunnerLinux) init(ifName string) error {
 	cIfName := C.CString(ifName)
 	defer C.free(unsafe.Pointer(cIfName))
 
-	if ret := int(C.init_afxdp_with_libbpf(cIfName, C.int(CombinedQueueID))); ret != 0 {
-		return initErrors[ret]
+	l.libbpf = C.libbpf_xsk__init(cIfName, C.int(CombinedQueueID))
+	if l.libbpf == nil {
+		return ErrInvalidLibbpf
+	}
+	if l.libbpf.err != 0 {
+		return afxdpErrors[int(l.libbpf.err)]
 	}
 	l.flag = process
 	// worker keep fetching packet from XSK
@@ -122,26 +124,24 @@ func (l *libbpfRunnerLinux) init(ifName string) error {
 }
 
 func (l *libbpfRunnerLinux) worker() {
+	// mark this worker should take one OS thread for reducing
+	// 1. don't migrate to other OS thread
+	// 2. take one OS thread resource
+	runtime.LockOSThread()
+
 	defer l.Done()
 	log.Println("Libbpf runner worker starting")
 	defer log.Println("Libbpf runner worker returned")
 	for atomic.LoadUint64(&l.flag) == process {
-		if int(C.poll_libbpf()) <= 0 {
-			continue
-		}
-		total := int(C.poll_packets_with_libbpf(C.size_t(BatchFrames)))
-		log.Printf("libbpf fetch %d packets\n", total)
-		if total > 0 {
-			// most likely BatchFrames(16) packets in FQ waiting for proceed
-			for i := 0; i < total; i++ {
-				l.fetchOnePacketFromXSK()
-				if _, ok := <-l.next; !ok {
-					// next channel has been closed by Close, stop fetching packets from AF_XDP
-					return
-				}
-				C.rx_fwd()
+		total := int(C.libbpf_xsk__pull_rx(l.libbpf, C.size_t(BatchFrames)))
+		// most likely BatchFrames(C.FRAME_BATCH_SIZE) packets in FQ waiting for proceed
+		// log.Printf("libbpf fetch %d packets\n", total)
+		for i := 0; i < total; i++ {
+			l.fetchOnePacketFromXSK()
+			if _, ok := <-l.next; !ok {
+				// next channel has been closed by Close, stop fetching packets from AF_XDP
+				return
 			}
-			l.flush(total)
 		}
 	}
 }
@@ -149,42 +149,22 @@ func (l *libbpfRunnerLinux) worker() {
 func (l *libbpfRunnerLinux) fetchOnePacketFromXSK() {
 	var bufptr *C.u_char
 	bptr := C.uintptr_t(uintptr(unsafe.Pointer(&bufptr)))
-	pktLen := int(C.read_packet_from_fq_torx_with_libbpf(bptr))
-
-	// Since we can't make sure there's no race condition between worker goroutine
-	// and a simple `go l.Drop()`, so we don't check the packet length here, and
-	// let packet-handler to drop this invalid packets. This way we can make sure
-	// the dropped packet is in the same lifecycle and race condition protection.
-
+	pktLen := int(C.libbpf_xsk__pkt_read(l.libbpf, bptr))
 	var data []byte
-	slice := (*reflect.SliceHeader)(unsafe.Pointer(&data))
-	slice.Data = uintptr(unsafe.Pointer(bufptr))
-	slice.Len = pktLen
-	slice.Cap = pktLen
-	l.incomming <- data
-}
 
-//
-func (l *libbpfRunnerLinux) flush(total int) {
-	handled := l.passed + l.injected + l.dropped
-	if total != handled {
+	// If we got invalid-length packet, we just pass a nil slice out
+	// packet handler should recognize this packet as invaid packet
+	// and drop it.
+	if pktLen > 0 {
+		slice := (*reflect.SliceHeader)(unsafe.Pointer(&data))
+		slice.Data = uintptr(unsafe.Pointer(bufptr))
+		slice.Len = pktLen
+		slice.Cap = pktLen
 	}
 
-	C.flush_tx(C.int(l.passed + l.injected)) // flush_tx will trigger sendto to send packets in tx
-	C.flush_cq(C.int(l.passed + l.injected))
-
-	C.flush_rx(C.int(total)) // release buffers in rx
-	C.flush_fq(C.int(total)) // recycle buffers in fq
-
-	l.resetCounters()
+	l.incomming <- data
 }
 
 func (l *libbpfRunnerLinux) complete() {
 	l.next <- true
-}
-
-func (l *libbpfRunnerLinux) resetCounters() {
-	l.passed = 0
-	l.injected = 0
-	l.dropped = 0
 }
